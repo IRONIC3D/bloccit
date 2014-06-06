@@ -4,5 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
+
+  def role?(base_role)
+    role == base_role.to_s
+  end
 end
