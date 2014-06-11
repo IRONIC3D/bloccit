@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "Comment was removed"
       redirect_to [@topic, @post]
     else
-      flash[:error] = "Comment couldn't be delete. Try again."
+      flash[:error] = "Could not save your comment. Comments should be at least 5 characters long. Please try again."
       redirect_to [@topic, @post]
     end
   end
