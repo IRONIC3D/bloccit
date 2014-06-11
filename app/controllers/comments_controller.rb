@@ -3,14 +3,20 @@ class CommentsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.find(params[:post_id])
 
-    @comment = @post.comments.build(params.require(:comment).permit(:body))
+    # @comment = @post.comments.build(params.require(:comment).permit(:body))
+    @comment =  Comment.new(params.require(:comment).permit(:body))
+    @comment.post = @post
+
     @comment.user = current_user
     if @comment.save
       flash[:notice] = "Comment was added succefully"
       redirect_to [@topic, @post]
     else
+      puts "*** #{@post.comments.to_yaml}"
+      # @comments = @post.comments or pass @post.comment directly
       flash[:error] = "There was an error, please try again later"
-      redirect_to [@topic, @post]
+      render "posts/show"
+      # redirect_to [@topic, @post]
     end
   end
 
@@ -25,8 +31,9 @@ class CommentsController < ApplicationController
       flash[:notice] = "Comment was removed"
       redirect_to [@topic, @post]
     else
-      flash[:error] = "Could not save your comment. Comments should be at least 5 characters long. Please try again."
-      redirect_to [@topic, @post]
+      flash[:error] = "There was an error, please try again later"
+      render "posts/show"
+      # redirect_to [@topic, @post]
     end
   end
 end

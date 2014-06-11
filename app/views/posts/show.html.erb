@@ -12,7 +12,7 @@
     <p><%= markdown @post.body %></p>
 
     <hr>
-    <%= render partial: '/comments/comment', locals: { comments_list: @comments } %>
+    <%= render partial: '/comments/comment', locals: { comments_list: @post.comments } %>
     <%= render partial: '/comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
   </div>
 
