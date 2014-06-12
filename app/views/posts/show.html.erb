@@ -13,7 +13,9 @@
 
     <hr>
     <%= render partial: '/comments/comment', locals: { comments_list: @post.comments } %>
-    <%= render partial: '/comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
+    <% if current_user %>
+      <%= render partial: '/comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
+    <% end %>
   </div>
 
 

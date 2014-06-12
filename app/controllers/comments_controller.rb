@@ -8,11 +8,12 @@ class CommentsController < ApplicationController
     @comment.post = @post
 
     @comment.user = current_user
+    authorize @comment
     if @comment.save
       flash[:notice] = "Comment was added succefully"
       redirect_to [@topic, @post]
     else
-      puts "*** #{@post.comments.to_yaml}"
+      # puts "*** #{@post.comments.to_yaml}"
       # @comments = @post.comments or pass @post.comment directly
       flash[:error] = "There was an error, please try again later"
       render "posts/show"
