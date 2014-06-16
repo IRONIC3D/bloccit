@@ -26,4 +26,24 @@ describe User do
       expect(users.first.comments_count).to eq(2)
     end
   end
+
+  describe "#role" do
+    before :each do
+      @user1 = create(:user)
+      @user2 = create(:user)
+    end
+    it "should return true user role admin" do
+      expect(@user1.role?(:admin)).to eq(true)
+    end
+
+    it "shoudl return false for user role moderator" do
+      expect(@user2.role?(:moderator)).to eq(false)
+    end
+  end
+
+  describe "#favorited" do
+  end
+
+  describe "#voted" do
+  end
 end
