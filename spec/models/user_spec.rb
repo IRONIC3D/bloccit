@@ -10,40 +10,33 @@ describe User do
       @user2 = create(:user)
       post = create(:post, user: @user2)
       2.times { create(:comment, user: @user2, post: post) }
-
-      @users = User.top_rated
     end
 
     it "should return users based on comments + posts" do
-      expect(@users).to eq([@user2, @user1])
+      expect(User.top_rated).to eq([@user2, @user1])
     end
 
     it "should have 'post_count' on user" do
-      expect(@users.first.posts_count).to eq(1)
+      users = User.top_rated
+      expect(users.first.posts_count).to eq(1)
     end
 
     it "should have 'comments_count' on user" do
-      expect(@users.first.comments_count).to eq(2)
-    end
-
-    it "Should return the 'rank' on user" do
-      expect(@users.first.rank).to eq(3)
+      users = User.top_rated
+      expect(users.first.comments_count).to eq(2)
     end
   end
 
   describe "#role" do
     before :each do
-      @user1 = create(:admin)
+      @user1 = create(:user)
       @user2 = create(:user)
     end
     it "should return true user role admin" do
-      puts @user1.to_yaml
-      puts "*** Role test: #{@user1.role?(:admin)}"
-      # @user1.role?(:admin).should  eq(true)
       expect(@user1.role?(:admin)).to eq(true)
     end
 
-    it "shoudl return false for user role admin" do
+    it "shoudl return false for user role moderator" do
       expect(@user2.role?(:moderator)).to eq(false)
     end
   end

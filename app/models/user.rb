@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   def role?(base_role)
-    role == base_role.to_s
+    puts "** Role: #{base_role} - #{role} - #{base_role.to_s} - #{self.role == base_role.to_s}"
+    self.role == base_role.to_s
   end
 
   def favorited(post)
