@@ -11,7 +11,7 @@
     <p><%= markdown @post.body %></p>
 
     <hr>
-    <%= render partial: '/comments/comment', locals: { comments_list: @post.comments } %>
+    <%= render partial: '/comments/comment', collection: @post.comments %>
     <% if current_user %>
       <%= render partial: '/comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
     <% end %>

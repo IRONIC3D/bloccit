@@ -30,5 +30,10 @@ gem 'fog'
 gem 'will_paginate', '~> 3.0.5'
 gem 'unf'
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.1'
+  gem 'factory_girl_rails', '~> 4.0'
+end
+
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development

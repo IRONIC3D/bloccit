@@ -29,7 +29,7 @@
         <%= render @posts %>
       </div>
       <div class="tab-pane" id="comments">
-        <%= render partial: '/comments/comment', locals: { comments_list: @user.comments } %>
+        <%= render @user.comments %>
       </div>
     </div>
   </div>
