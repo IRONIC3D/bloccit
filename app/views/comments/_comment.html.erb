@@ -1,6 +1,6 @@
-  <ul class="list-group">
-    <li class="list-group-item">
-      <%= content_tag :div, class: 'media', id: "comment-#{comment.id}" do %>
+<%= content_tag :ul, class: 'list-group', id: "comment-#{comment.id}" do %>
+  <li class="list-group-item">
+    <div class="media">
         <%= link_to '#', class: 'pull-left' do %>
           <%= image_tag(comment.user.avatar.small.url) if comment.user.avatar? %>
         <% end %>
@@ -13,6 +13,6 @@
           </small>
           <p><%= comment.body %></p>
         </div>
-      <% end %>
-    </li>
-  </ul>
+    </div>
+  </li>
+<% end %>
