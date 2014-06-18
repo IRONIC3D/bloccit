@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     # @comment = @post.comments.build(params.require(:comment).permit(:body))
     @comment =  Comment.new(params.require(:comment).permit(:body))
     @comment.post = @post
-
+    @new_comment = Comment.new
     @comment.user = current_user
     authorize @comment
 
