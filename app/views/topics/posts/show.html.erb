@@ -16,10 +16,11 @@
     <div class="js-comments">
       <%= render partial: '/comments/comment', collection: @post.comments %>
     </div>
-    
+    <div class="new-comment">
       <% if current_user %>
         <%= render partial: '/comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
       <% end %>
+    </div>
   </div>
 
 
